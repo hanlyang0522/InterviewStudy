@@ -1,52 +1,70 @@
-## 딥러닝은 무엇인가요? 딥러닝과 머신러닝의 차이는?
+# 📄Table of Contents
 
-Keyword: Neural network, feature extraction  
-Answer: 딥러닝은 neural network를 이용해 ML 학습을 수행하는 것으로, ML과의 가장 큰 차이점은 feature selection에 사람이 개입하지 않는다는 것입니다
+- [딥러닝은 무엇인가요? 딥러닝과 머신러닝의 차이는?](#1)
+- [Cost Function과 Activation Function은 무엇인가요?](#2)
+- [Tensorflow, PyTorch 특징과 차이가 뭘까요?](#3)
+- [Data Normalization은 무엇이고 왜 필요한가요?](#4)
+- [알고있는 Activation Function에 대해 알려주세요. (Sigmoid, ReLU, LeakyReLU, Tanh 등)](#5) 
+- [오버피팅일 경우 어떻게 대처해야 할까요](#6)
+- [하이퍼 파라미터는 무엇인가요?](#7)
+- [Weight Initialization 방법에 대해 말해주세요. 그리고 무엇을 많이 사용하나요?](#8)
+- [볼츠만 머신은 무엇인가요?](#9)
+- [뉴럴넷의 가장 큰 단점은 무엇인가? 이를 위해 나온 One-Shot Learning은 무엇인가?](#10)
+
+---
+
+## #1 
+
+### 딥러닝은 무엇인가요? 딥러닝과 머신러닝의 차이는?
+
+
+딥러닝은 **neural network**를 이용해 ML 학습을 수행하는 것으로, ML과의 가장 큰 차이점은 **feature selection**에 사람이 개입하지 않는다는 것입니다
 
 - ML: 휴리스틱하게, 특징선택에서 사람이 개입  
-  Mасhine Leаrning is а subset оf Аrtifiсiаl Intelligenсe thаt uses **stаtistiсаl leаrning аlgоrithms** tо build systems thаt hаve the аbility tо аutоmаtiсаlly leаrn аnd imрrоve frоm exрerienсes withоut being exрliсitly рrоgrаmmed.  
-  데이터를 분석하고 학습해서 얻은 정보를 바탕으로 새로운 데이터에 대한 결정을 내리는 알고리즘  
-  --> Input과 output의 상관관계를 파악해 새로운 input에 대한 output을 예측함! 이때 쓰이는게 stаtistiсаl leаrning аlgоrithms
+  Input과 output의 상관관계를 파악해 새로운 input에 대한 output을 예측함! 이때 쓰이는게 stаtistiсаl leаrning аlgоrithms
 - DL: 학습을 통해 end-to-end, data dependent
 - 가장 큰 차이는 feature selection!!
 
 <br/>
 
-## Cost Function과 Activation Function은 무엇인가요?
+## #2
 
-Keyword: 오차 계산, 선형 to 비선형  
-Answer: Cost function은 모델의 예측값과 오차를 계산해주는 함수로 학습 뱡향을 어느 방향으로 얼마나 개선할지 판단하는 지표가 됩니다. Activation function은 선형 함수를 비선형함수로 만들어 표현력을 더 키워주는 함수입니다.
+### Cost Function과 Activation Function은 무엇인가요?
 
-- Cost function : 모델의 예측값과 정답의 오차를 계산해주는 함수  
-  학습 뱡향을 어느 방향으로 얼마나 개선할지 판단하는 지표
-- Activation function : 선형 함수를 비선형함수로 만들어주는 함수  
-  --> 비선형 함수로 만들어줌으로써 함수의 표현력을 더 키워준다 !
+Cost function은 모델의 **예측값과 오차를 계산**해주는 함수로 학습 뱡향을 어느 방향으로 얼마나 개선할지 판단하는 지표가 됩니다. Activation function은 **선형 함수를 비선형함수로** 만들어 표현력을 더 키워주는 함수입니다.
+
+- Activation function이 없을 경우 layer를 깊게 쌓아도 선형함수기 때문에 의미가 없다. AF를 이용해 모델의 복잡도를 높이고 비선형 문제를 해결할 수 있게 만드는것.
 
 <br/>
 
-## Tensorflow, PyTorch 특징과 차이가 뭘까요?
+## #3
 
-Keyword: Define and/by run  
-Answer: Tensorflow는 단일 데이터 흐름 그래프를 만들고 그래프 코드를 성능에 맞게 최적화한 다음 모델을 학습하므로 더 쉽게 다른 언어나 모듈에 적용이 가능합니다. PyTorch는 각 반복 단계에서 즉석으로 그래프를 재생성하므로 모델 그래프를 만들 때 고정 상태가 아니므로 데이터에 따라 조절이 가능한 유연성을 갖고 있습니다.
+### Tensorflow, PyTorch 특징과 차이가 뭘까요?
+ 
+Tensorflow는 단일 데이터 흐름 **그래프를 만들고 그래프 코드를 성능에 맞게 최적화한 다음 모델을 학습하므로** 더 쉽게 다른 언어나 모듈에 적용이 가능합니다.   
+PyTorch는 **각 반복 단계에서 즉석으로 그래프를 재생성하므로** 모델 그래프를 만들 때 고정 상태가 아니므로 데이터에 따라 조절이 가능한 유연성을 갖고 있습니다.
 
 - Tensorflow: 단일 데이터 흐름 그래프를 만들고 그래프 코드를 성능에 맞게 최적화한 다음 모델을 학습  
   더 쉽게 다른 언어나 모듈에 적용이 가능  
-  즉시 실행, 직관적인 고수준 API, 모든 플랫폼에서의 유연한 모델 구축
+  즉시 실행, 직관적인 고수준 API, 모든 플랫폼에서의 유연한 모델 구축  
+  Define and run
 
 - PyTorch: 예전의 토치(Torch) 및 카페2(Caffe2) 프레임워크를 기반  
   파이썬을 스크립팅 언어로 사용하며, 진화된 토치 C/CUDA 백엔드를 사용  
   각 반복 단계에서 즉석으로 그래프를 재생성  
   플라스크(Flask) 웹 서버로 실행  
   모델 그래프를 만들 때 고정 상태가 아니므로 데이터에 따라 조절이 가능한 유연성
+  Define by run
 
 <br/>
 
-## Data Normalization은 무엇이고 왜 필요한가요?
+## #4
 
-Keyword: weight bias 방지  
-Answer: Data Normalization는 입력 data의 scale을 비슷한 크기로 맞춰줘 weight가 scale에 따라 bias되는 것을 방지합니다.
+### Data Normalization은 무엇이고 왜 필요한가요?
+ 
+Data Normalization는 입력 data의 scale을 비슷한 크기로 맞춰줘 **weight가 scale에 따라 bias되는 것을 방지**합니다.
 
-- $x={x−x_{min}}/{x_{max}−x_{min}}$
+- $x=\frac{x−x_{min}}{x_{max}−x_{min}}$
 - 입력 data의 scale(규모, 폭)에 따라 weight가 bias되는 것을 방지하기 위해 0~1 사이로 값의 scale을 비슷하게 줄여줌
 - Train에도 도움됨
 - 참고: https://skyil.tistory.com/50
@@ -55,25 +73,28 @@ Answer: Data Normalization는 입력 data의 scale을 비슷한 크기로 맞춰
 
 <br/>
 
-## 알고있는 Activation Function에 대해 알려주세요. (Sigmoid, ReLU, LeakyReLU, Tanh 등)
+## #5
+
+### 알고있는 Activation Function에 대해 알려주세요. (Sigmoid, ReLU, LeakyReLU, Tanh 등)
 
 ![](https://images.velog.io/images/hanlyang0522/post/345ef903-f85e-43c1-9b42-55886bc18ce0/image.png)
 
-- Sigmoid: output값을 0에서 1사이로 만들어준다. 데이터의 평균은 0.5를 갖게된다.  
+Sigmoid: output값을 **0에서 1사이**로 만들어준다. 데이터의 평균은 0.5를 갖게된다.  
   위 그림에서 시그모이드 함수의 기울기를 보면 알 수 있듯이 input값이 어느정도 크거나 작으면 기울기가 아주 작아진다.  
-  이로인해 생기는 문제점은 vanishing gradient현상이 있다.
+  이로인해 생기는 문제점은 **gradient vanishing** 현상이 있다.
 
-- Tanh: 그림에서 보면 알 수 있듯이 시그모이드 함수와 거의 유사하다.  
-  차이는 -1~1값을 가지고 데이터의 평균이 0이라는 점이다. 데이터의 평균이 0.5가 아닌 0이라는 유일한 차이밖에 없지만 대부분의 경우에서 시그모이드보다 Tanh가 성능이 더 좋다. --> tanh의 기울기가 더 높기 때문에 train에서 성능이 더 좋음
-  그러나 시그모이드와 마찬가지로 Vanishing gradient라는 단점이 있다.
+Tanh: 그림에서 보면 알 수 있듯이 시그모이드 함수와 거의 유사하다.  
+  차이는 **-1 ~ 1**값을 가지고 데이터의 평균이 0이라는 점이다. 데이터의 평균이 0.5가 아닌 0이라는 유일한 차이밖에 없지만 대부분의 경우에서 **sigmoid보다 Tanh가 성능이 더 좋다.**  
+  --> Tanh의 기울기가 더 높기 때문에 train에서 성능이 더 좋음
+  그러나 시그모이드와 마찬가지로 **gradient vanishing**라는 단점이 있다.
 
-- ReLU: 대부분의 경우 일반적으로 ReLU의 성능이 가장 좋기때문에 ReLU를 사용한다.  
-  대부분의 input값에 대해 기울기가 0이 아니기 때문에 학습이 빨리 된다.  
+ReLU: 대부분의 경우 일반적으로 ReLU의 성능이 가장 좋기때문에 ReLU를 사용한다.  
+  대부분의 input값에 대해 **기울기가 0이 아니기 때문에 학습이 빨리 된다.**  
   학습을 느리게하는 원인이 gradient가 0이 되는 것인데 이를 대부분의 경우에서 막아주기 때문에 시그모이드, Tanh같은 함수보다 학습이 빠르다.
   그림을 보면 input이 0보다 작을 경우 기울기가 0이기 때문에 대부분의 경우에서 기울기가 0이 되는것을 막아주는게 납득이 안 될수 있지만 실제로 hidden layer에서 대부분 노드의 z값은 0보다 크기 때문에 기울기가 0이 되는 경우가 많지 않다.  
   단점으로는 위에서 언급했듯이 z가 음수일때 기울기가 0이라는 것이지만 실제로는 거의 무시할 수 있는 수준으로 학습이 잘 되기 때문에 단점이라 할 수도 없다.
 
-- leaky ReLU: ReLU와 유일한 차이점으로는 max(0, z)가 아닌 max(0.01z, z)라는 점  
+leaky ReLU: ReLU와 유일한 차이점으로는 max(0, z)가 아닌 max(0.01z, z)라는 점  
   즉, input값인 z가 음수일 경우 기울기가 0이 아닌 0.01값을 갖게 된다.  
   leaky ReLU를 일반적으로 많이 쓰진 않지만 ReLU보다 학습이 더 잘 되긴 한다.
 
@@ -81,66 +102,64 @@ Answer: Data Normalization는 입력 data의 scale을 비슷한 크기로 맞춰
 
 <br/>
 
-## 오버피팅일 경우 어떻게 대처해야 할까요?
+## #6
 
-Keyword: 데이터 양 늘리기, regularization, dropout, norm penalty  
-Answer: Overfitting이 일어날 경우에는 augmentation를 이용해 데이터의 절대적인 양을 늘리거나 regularization, dropout을 사용하고 norm penalty를 사용해 weight가 너무 커지지 않게 만듭니다.
+### 오버피팅일 경우 어떻게 대처해야 할까요?
+
+Overfitting이 일어날 경우에는 augmentation를 이용해 **데이터의 절대적인 양을 늘리거나 regularization, dropout을 사용하고 norm penalty를 사용해 weight가 너무 커지지 않게** 만듭니다.
 
 - 오버피팅: train loss는 줄지만, eval loss는 안 줄때
   1. 데이터 양 늘리기  
-     데이터의 양이 적을 경우, 해당 데이터의 특정 패턴이나 노이즈까지 쉽게 암기하기 되므로 과적합 현상이 발생할 확률이 늘어납니다.
+     데이터의 양이 적을 경우, 해당 데이터의 특정 패턴이나 노이즈까지 쉽게 암기하기 되므로 과적합 현상이 발생할 확률이 늘어남
   2. ~~모델 복잡도 줄이기~~  
-     ~~복잡도: 은닉층(hidden layer)의 수나 매개변수의 수~~
+     ~~복잡도: 은닉층(hidden layer)의 수나 매개변수의 수~~  
      --> 오히려 모델의 크기를 키우는게 답일수도
   3. Regularization 사용
   4. Dropout 사용
-  5. Norm penalty 적용
+  5. Cost function에 Norm penalty(L1, L2 등) 적용
 
 <br/>
 
-## 하이퍼 파라미터는 무엇인가요?
+## #7
 
-Keyword: 직접 세팅  
-Answer: learning rate나 SVM에서의 C, sigma 값, KNN에서의 K값 등 모델링할 때 사용자가 직접 세팅해주는 값을 말합니다.
+### 하이퍼 파라미터는 무엇인가요?
+
+Learning rate나 SVM에서의 C, sigma 값, KNN에서의 K값 등 모델링할 때 **데이터에서 추정될 수 없는, 사용자가 직접 세팅해주는 값**을 말합니다.
 
 - A model hyperparameter is a configuration that is external to the model and whose value cannot be estimated from data.
 
+
 <br/>
 
-## Weight Initialization 방법에 대해 말해주세요. 그리고 무엇을 많이 사용하나요?
+## #8
 
-Keyword: Gaussian sampling, LeCun init, Xavier init, He init  
-Answer: Gaussian sampling하거나, 이전 node 수에 영향을 받는 LeCun init, 다음 node 수에도 영향을 받고 uniform/normal 분포를 따르는 Xavier init, He init 등이 있다.
+### Weight Initialization 방법에 대해 말해주세요. 그리고 무엇을 많이 사용하나요?
+
+**Gaussian sampling**을 하거나, 이전 node 수에 영향을 받는 **LeCun init**, 다음 node 수에도 영향을 받고 uniform/normal 분포를 따르는 **Xavier init, He init** 등이 있다.  
 Activation function이 sigmoid, tanh일 경우 Xavier init을, ReLU일 경우 He init을 사용함.
 
-- Gaussian: normal distribution
 
 <br/>
 
-## 볼츠만 머신은 무엇인가요?
+## #9
 
-Keyword: 2 layer  
-Answer: 볼츠만 머신(Boltzmann machine)은 볼 수 있는 층(visible layer)과 숨겨진 층(hidden layer)의 두 층으로 구성된 모델입니다. Layer의 모든 node들은 연결돼있습니다.
+### 볼츠만 머신은 무엇인가요?
+
+볼츠만 머신(Boltzmann machine)은 볼 수 있는 층(visible layer)과 숨겨진 층(hidden layer)의 **두 층으로 구성된 모델**입니다. Layer의 모든 node들은 연결되어 있습니다.
 
 - 볼츠만 머신(Boltzmann machine)은 볼 수 있는 층(visible layer)과 숨겨진 층(hidden layer)의 두 층으로 구성된 그래픽 모델
 - 이 모델에서 각 볼 수 있는 유닛은 숨겨진 유닛들과만 연결되고, 볼 수 있는 유닛들 사이에 그리고 숨겨진 유닛들 사이에는 서로 연결이 없을 때 이를 제한된 볼츠만 머신(RBM: restricted Boltzmann machine)이라 한다
 
-<br/>
-
-## TF, PyTorch 등을 사용할 때 디버깅 노하우는?
-
-Keyword:  
-Answer:
 
 <br/>
 
-## 뉴럴넷의 가장 큰 단점은 무엇인가? 이를 위해 나온 One-Shot Learning은 무엇인가?
+## #10
 
-Keyword: Distance 기반 learning  
-Answer: Neural network의 가장 큰 단점은 data의 수가 적을 경우 사용하지 못한다는 점입니다. One-Shot Learning은 이를 개선하기 위해 각 class마다 1개의 image만 사용하고 input image를 각 class별 거리를 측정해 가장 가까운 class로 판정하는 기법입니다.
+### 뉴럴넷의 가장 큰 단점은 무엇인가? 이를 위해 나온 One-Shot Learning은 무엇인가?
 
-- Neural network의 단점은 data의 수가 적을 경우 사용하지 못한다는 점
-- One-shot learning은 class당 1개의 image만 있고, input image를 각 class별 distance를 측정해 가장 가까운 class로 판별
+Neural network의 가장 큰 단점은 **data의 수가 적을 경우 사용하지 못한다는 점**입니다.  
+One-Shot Learning은 이를 개선하기 위해 각 class마다 1개의 image만 사용하고 input image를 **각 class별 거리를 측정해** 가장 가까운 class로 판정하는 기법입니다.
+
 
 <br/>
 
