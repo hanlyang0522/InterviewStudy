@@ -163,131 +163,177 @@ One-Shot Learning은 이를 개선하기 위해 각 class마다 1개의 image만
 
 <br/>
 
-## 요즘 Sigmoid 보다 ReLU를 많이 쓰는데 그 이유는?
+## #11 
+
+### 요즘 Sigmoid 보다 ReLU를 많이 쓰는데 그 이유는?
+
+Sigmoid는 데이터의 평균이 0.5로 수렴하고 input의 크기가 어느정도 크거나 작으면 기울기가 매우 작아져 **gradient vanishing** 문제가 발생합니다.   
+반면에 ReLU는 대부분의 input 값에 대해 기울기가 0이 아니고 input을 그대로 output으로 내보내기 때문에 **학습이 빨리** 됩니다. ReLU도 input이 0보다 작을 경우엔 기울기가 0이 되지만 hidden layer에서 node의 z값은 대부분 0보다 크기 때문에 **학습이 잘 되는 편**입니다.
+
+<br/>
+
+## #12
 
 ### Non-Linearity라는 말의 의미와 그 필요성은?
 
-Keyword: feature의 차원 증가  
-Answer: 데이터가 복잡해지고, feature들의 차원이 증가하면서 데이터의 분포가 선형적이지 않고 비선형적으로 나타나면서 단순한 선형의 boundary로는 표현이 불가능하기 때문에 비선형의 boundary가 필요하기 때문에 non-linear가 필요해졌습니다.
+Non-linearity는 **비선형, 즉 입력과 출력이 비례하지 않는다**는 것을 뜻합니다.
+데이터가 복잡해지고 **feature의 차원이 증가**하면서 단순한 선형의 boundary로는 표현이 불가능해졌기 때문에 nonlinearity가 필요해졌습니다.
+
+<br/>
+
+## #13
 
 ### ReLU로 어떻게 곡선 함수를 근사하나?
 
-Keyword: 선형, 비선형의 결합  
-Answer: ReLU는 선형(y=x)과 비선형(y=0)의 결합이기 때문에 ReLU가 반복 적용되면 선형부분의 결합으로 곡선 함수를 표현할 수 있습니다.
+ReLU는 **선형(y=x)과 비선형(y=0)의 결합**이기 때문에 ReLU가 반복해 적용되면 선형부분의 결합으로 곡선 함수를 표현할 수 있습니다.
+
+<br/>
+
+## #14
 
 ### ReLU의 문제점은?
 
-Keyword: Input이 0보다 작을 경우  
-Answer: Input이 0보다 작을 경우 gradient가 0이 됩니다.
+**Input이 0보다 작을 경우** gradient가 0이 됩니다.
+
+<br/>
+
+## #15
 
 ### Bias는 왜 있는걸까?
 
-Keyword: 평행이동  
-Answer: 모델이 항상 원점을 기준으로 분포해있지는 않기 때문에 model이 data에 잘 fit하게 평행이동 시켜줍니다.
-
-- Non-linearity: 데이터가 복잡해지고, feature들의 차원이 증가하면서 데이터의 분포가 선형적이지 않고 비선형적으로 나타나면서 단순한 선형의 boundary로는 표현이 불가능하기 때문에 비선형의 boundary가 필요하기 때문에 non-linear가 필요  
-   Linear function은 logistic regression과 동일하게 계산돼 복잡한 연산을 담을 수 없음
-
-- 함수를 근사 == 함수를 추정하여 동일한 input을 넣었을 때 output이 유사하게 나오도록 조정하는 과정  
-   ReLU는 선형(y=x)과 비선형(y=0)의 결합이기 때문에 ReLU가 반복 적용되면 선형부분의 결합으로 곡선 함수를 표현할 수 있음
-
-- input이 0보다 작을 경우 gradient가 0이 된다
-
-- 모델이 항상 원점을 기준으로 분포해있지는 않기 때문에 model이 data에 잘 fit하게 평행이동 시켜줌
-
-- Sigmoid는 값을 0~1 사이로 mapping 시켜서 모델이 깊어지면 0~1 사이의 값이 계속 곱해져 결국은 gradient vanishing이 일어나게 됨
-- ReLU는 값이 0보다 클 경우 그대로 by-pass하기 때문에 값 유지가 가능  
-  또한 단순히 입력값을 그대로 출력으로 내보내기 때문에 시그모이드 함수에 비해 계산 속도가 빠르다.
+Model이 항상 원점을 기준으로 분포해있지는 않기 때문에 model이 data에 잘 fit할 수 있게 **평행이동**시켜줍니다.
 
 <br/>
 
-## Gradient Descent에 대해서 쉽게 설명한다면?
+## #16
+
+### Gradient Descent에 대해서 쉽게 설명한다면?
+
+함수의 **기울기(gradient)를 이용해 함수의 최소값을 찾아가는 iterative한 방법**을 말합니다.
+
+<br/>
+
+## #17
 
 ### GD 중에 때때로 Loss가 증가하는 이유는?
 
-Keyword: learning rate  
-Answer: learning rate가 커서 순간적으로 발산하거나, local minimum을 빠져나오기 때문입니다.
+**Learning rate**가 커서 순간적으로 발산하거나, local minimum을 빠져나오기 때문입니다.
+
+<br/>
+
+## 18
 
 ### Back Propagation에 대해서 쉽게 설명 한다면?
 
-Keyword: loss update  
-Answer: Ground truth와 estimated output의 차이가 얼마나 나는지 구한 후 오차loss만큼 weight를 업데이트합니다.
+Cost function을 이용해 Ground truth와 estimate output의 차이가 얼마나 나는지 구한 후 **loss만큼 weight를 업데이트**합니다.
 
 <br/>
 
-## Local Minima 문제에도 불구하고 딥러닝이 잘 되는 이유는?
+## #19 
 
-Keyword: weight initialize, pre-train  
-Answer: Weight을 단순히 zero initialize하는게 아니라 activation function에 따라 적절한 초기화 방법이 등장했고, pre-training을 통해 효과적으로 학습을 시킬 수 있게 됐습니다.
+### Local Minima 문제에도 불구하고 딥러닝이 잘 되는 이유는?
 
-### GD가 Local Minima 문제를 피하는 방법은?
+Lecun, Xavier, He init 등 weight를 단순히 zero initialize하는 것이 아니라 **activation function에 따라 적절한 초기화 방법**이 등장했고, pre-trained model을 이용하여 효과적으로 학습할 수 있기 때문입니다.
 
-Keyword: Learning rate scheduler  
-Answer: Learning rate scheduler 등을 통해 주기적으로 lr의 크기를 변경해 local minima를 빠져나가게 할 수 있음
+<br/>
+
+## #20
+
+### Gradient descent가 Local Minima 문제를 피하는 방법은?
+
+LambdaLR, CosineAnnealingLR 등 **learning rate scheduler**를 이용해 주기적으로 lr의 크기를 변경하여 local minima를 빠져나갈 수 있게 합니다.
+
+<br/>
+
+## #21
 
 ### 찾은 해가 Global Minimum인지 아닌지 알 수 있는 방법은?
 
-Keyword: 실험 반복  
-Answer: 차원이 높을수록 local minima에 빠질 위험이 적기 때문에 차원을 높여서 실험, seed를 변경하며 여러번 실험합니다.
+차원이 높을수록 local minima에 빠질 위험이 적기 때문에 차원을 높여서 실험하고 seed를 변경하며 **여러번 실험**을 반복합니다.
 
 <br/>
 
-## Training 세트와 Test 세트를 분리하는 이유는?
+## #22
 
-Keyword: Overfit  
-Answer: Train에서 test 세트를 학습하면 모델이 추정하는 분포가 test에 overfit해 unseen data에 대한 성능이 떨어질 위험이 있기 때문입니다.
+### Training 세트와 Test 세트를 분리하는 이유는?
+
+Train에서 test 세트를 학습하면 모델이 추정하는 분포가 test에 **overfit**하여 unseen data에 대한 성능이 떨어질 수 있기 때문입니다.
+
+<br/>
+
+## #23
 
 ### Validation 세트가 따로 있는 이유는?
 
-Keyword: 모델 성능 평가  
-Answer: 모델의 성능을 평가하기 위해서 사용합니다.
-
-### Test 세트가 오염되었다는 말의 뜻은?
-
-Keyword: 테스트 데이터 분리 실패  
-Answer: 테스트용으로 분리해야하는 데이터가 학습 데이터에 반영됐을 때 사용합니다.
-
-### Regularization이란 무엇인가?
-
-Keyword: penalty  
-Answer: L1, L2 regularization처럼 모델에 penalty를 줘서 train data에 대한 perfect fit을 포기하는 대신 testing accuracy를 높이고자 하는 기법
+Unseen data에 대한 **모델의 성능을 평가하기 위해서** 사용합니다.
 
 <br/>
 
-## Batch Normalization의 효과는?
+## #24
 
-Keyword: 학습 속도 개선, input data의 variance 조정  
-Answer: Learning rate를 높일 수 있어 학습 속도를 개선하고, 학습할 때마다 출력값을 normalize하기 때문에 weight initialize에 대한 의존성이 적어진다. 가중치의 scale을 조정해 gradient exploding/vanishing을 방지한다
+### Test 세트가 오염되었다는 말의 뜻은?
 
-- 각 batch 단위로 평균과 분산을 이용해 입력 데이터의 분포의 차이(internal covariant shift)를 조정
+Test용으로 분리해야하는 데이터가 train 데이터에 반영됐을 경우를 뜻합니다.
+
+<br/>
+
+## #25
+
+### Regularization이란 무엇인가?
+
+L1, L2 regularization처럼 **모델에 penalty**를 줘 train data에 대한 perfect fit을 포기하는 대신 testing accuracy를 높이고자 하는 기법입니다.
+
+
+<br/>
+
+## #26
+
+### Batch Normalization의 효과는?
+
+Gradient의 스케일이나 초기 값에 대한 dependency 가 줄어들어 large learning rate 를 설정할 수 있기 때문에 **빠른 학습이 가능**하며, **gradient vanishing을 방지**할 수 있습니다.. 또한 scale, shift 변환을 통해 nonlinearity를 유지하며 학습하여 **regularization 효과**가 있습니다.
 
 - 참고: https://eehoeskrap.tistory.com/430
   https://m.blog.naver.com/laonple/220808903260
 
+<br/>
+
+## #27
+
 ### Dropout의 효과는?
 
-Keyword: co-adaptation 방지, 다양한 모델 학습  
-Answer: 학습 데이터에 의해 각 node들이 co-adaptation 되는 현상을 방지하고 여러 개의 모델을 학습시키는 것과 같은 작용을 해 regularization 효과를 기대할 수 있다.
+학습 데이터에 의해 각 node들이 **co-adaptation**되는 현상을 방지하고 여러 개의 모델을 학습시키는 것과 같은 작용을 하여 **regularization**효과를 기대할 수 있습니다.
+
+<br/>
+
+## #28
 
 ### BN 적용해서 학습 이후 실제 사용시에 주의할 점은? 코드로는?
 
-Keyword: train/inference 구분, moving average 사용  
-Answer: inference 시 입력되는 값을 통해 정규화를 하게 되면 모델이 학습을 통해 입력 데이터의 분포를 추정하는 의미 자체가 없어지기 때문에, inference 시에는 결과를 deterministic하게 만들기 위해 미리 저장해돈 mini-batch의 moving average를 이용해 정규화를 하게 됨.
+Inference 시 input을 이용해 BN을 하면 모델이 train에서 input의 분포를 추정한 의미가 없어지기 때문에, inference 시에는 결과를 deterministic하게 만들기 위해 미리 저장해둔 **mini-batch의 moving average를 이용**해 정규화를 합니다.
+
+<br/>
+
+## #29
 
 ### GAN에서 Generator 쪽에도 BN을 적용해도 될까?
 
-Keyword:  
-Answer: DCGAN generator의 마지막 layer와 dicsriminator의 첫번째 layer는 모델이 distribution에 대한 정확한 mean과 scale을 학습하기 위해 BN을 적용하지 않지만, 그 외의 대부분의 layer에는 BN을 적용함
-하지만 mini-batch의 크기가 작을 경우 GAN이 생성하는 image가 z code보다 batch normalization의 fluctuation에 영향을 많이 받을 경우 batch간 correlation이 생기는 문제가 발생함.
+DCGAN의 generator의 마지막 layer와 discriminator의 첫번쨰 layer는 모델이 distribution의 정확한 mean, scale을 학습하기 위해 BN을 적용하지 않지만, 그 외 **대부분의 layer에는 BN을 적용**합니다.  
+하지만 **mini-batch의 크기가 작을 경우** GAN이 생성하는 image가 z보다 BN의 변동값에 영향을 많이 받아 **batch간 correlation이 생기는 문제**가 발생하기도 합니다.
 
-- 참고: https://kakalabblog.wordpress.com/2017/07/27/gan-tutorial-2016/
+  - Z code: 생성자는 랜덤 벡터 ‘z’를 입력으로 받아 가짜 이미지를 출력하는 함수다. 여기서 ‘z’는 단순하게 균등 분포(Uniform Distribution)나 정규 분포(Normal Distribution)에서 무작위로 추출된 값이다.
+  - 참고: https://kakalabblog.wordpress.com/2017/07/27/gan-tutorial-2016/
 
-## SGD, RMSprop, Adam에 대해서 아는대로 설명한다면?
+<br/>
+
+## #30
+
+### SGD, RMSprop, Adam에 대해서 아는대로 설명한다면?
 
 ![](https://images.velog.io/images/hanlyang0522/post/807cea1e-b014-42e2-9be0-156a7b9abcd2/image.png)
 
-Keyword: 기울기를 업데이트 하는 방식  
-Answer: SGD는 loss function을 계산할 때 전체 batch가 아니라 일부 데이터(mini-batch)만 사용해 같은 시간에 더 많은 step을 갈 수 있어 local minima에 빠지지 않고 더 좋은 방향으로 수렴할 가능성이 높다. RMSprop은 기울기를 단순 누적하지 않고 weighted moving average를 사용해 최신 기울기를 더 크게 반영하도록 한다. Adam은 momentum과 RMSprop을 결합해 스텝 방향과 사이즈 모두 고려함.
+SGD는 loss function을 계산할 때 전체 batch가 아니라 **일부 데이터(mini-batch)만 사용해 같은 시간에 더 많은 step**을 갈 수 있어 local minima에 빠지지 않고 더 좋은 방향으로 수렴할 가능성이 높다.  
+RMSprop은 기울기를 단순 누적하지 않고 weighted moving average를 사용해 **최신 기울기를 더 크게 반영**하도록 한다.   
+Adam은 **momentum과 RMSprop을 결합해 스텝 방향과 사이즈 모두 고려**함.
 
 ### SGD에서 Stochastic의 의미는?
 
@@ -311,3 +357,4 @@ a는 learning rate, m은 모멘텀 계수
   - 어느 정도 돌아가는 녀석을 작성하기까지 몇시간 정도 걸릴까?
   - Back Propagation은 몇줄인가?
   - CNN으로 바꾼다면 얼마나 추가될까?
+https://github.com/hanlyang0522/InterviewStudy.githttps://github.com/hanlyang0522/InterviewStudy.git
