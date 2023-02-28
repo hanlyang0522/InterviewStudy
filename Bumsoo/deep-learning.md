@@ -10,6 +10,30 @@
 - [Weight Initialization 방법에 대해 말해주세요. 그리고 무엇을 많이 사용하나요?](#8)
 - [볼츠만 머신은 무엇인가요?](#9)
 - [뉴럴넷의 가장 큰 단점은 무엇인가? 이를 위해 나온 One-Shot Learning은 무엇인가?](#10)
+- [요즘 Sigmoid 보다 ReLU를 많이 쓰는데 그 이유는?](#11)
+- [Non-Linearity라는 말의 의미와 그 필요성은?](#12)
+- [ReLU로 어떻게 곡선 함수를 근사하나?](#13)
+- [ReLU의 문제점은?](#14)
+- [Bias는 왜 있는걸까?](#15)
+- [Gradient Descent에 대해서 쉽게 설명한다면?](#16)
+- [GD 중에 때때로 Loss가 증가하는 이유는?](#17)
+- [Back Propagation에 대해서 쉽게 설명 한다면?](#18)
+- [Local Minima 문제에도 불구하고 딥러닝이 잘 되는 이유는?](#19)
+- [Gradient descent가 Local Minima 문제를 피하는 방법은?](#20)
+- [찾은 해가 Global Minimum인지 아닌지 알 수 있는 방법은?](#21)
+- [Training 세트와 Test 세트를 분리하는 이유는?](#22)
+- [Validation 세트가 따로 있는 이유는?](#23)
+- [Test 세트가 오염되었다는 말의 뜻은?](#24)
+- [Regularization이란 무엇인가?](#25)
+- [Batch Normalization의 효과는?](#26)
+- [Dropout의 효과는?](#27) 
+- [BN 적용해서 학습 이후 실제 사용시에 주의할 점은? 코드로는?](#28) 
+- [GAN에서 Generator 쪽에도 BN을 적용해도 될까?](#29)
+- [SGD, RMSprop, Adam에 대해서 아는대로 설명한다면?](#30)
+- [SGD에서 Stochastic의 의미는?](#31)
+- [미니배치를 작게 할때의 장단점은?](#32)
+- [모멘텀의 수식을 적어 본다면?](#33)
+- [간단한 MNIST 분류기를 MLP+CPU 버전으로 numpy로 만든다면 몇줄일까?](#34)
 
 ---
 
@@ -335,26 +359,48 @@ SGD는 loss function을 계산할 때 전체 batch가 아니라 **일부 데이�
 RMSprop은 기울기를 단순 누적하지 않고 weighted moving average를 사용해 **최신 기울기를 더 크게 반영**하도록 한다.   
 Adam은 **momentum과 RMSprop을 결합해 스텝 방향과 사이즈 모두 고려**함.
 
+<br/>
+
+## #31
+
 ### SGD에서 Stochastic의 의미는?
 
-Keyword: 확률론적인  
-Answer: 확률론적인, 약간은 랜덤한 결과, 약간의 불확실성을 포함한 다양한 프로세스를 의미
+Stochastic은 확률론적인, 약간은 랜덤한 결과, 약간의 불확실성을 포함한 다양한 프로세스를 의미합니다.
+
+<br/>
+
+## #32
 
 ### 미니배치를 작게 할때의 장단점은?
 
-Keyword: 연산량을 줄임  
-Answer: 연산량을 줄여 같은 시간에 더 많은 step을 나갈 수 있다
+배치 사이즈를 작게 할 경우 메모리량을 줄일 수 있습니다. 또한 부정확한 기울기를 사용한다는 단점이 있긴 하지만, 한번 epoch 할 동안 여러번의 업데이트를 수행할 수 있고, 기울기의 부정확성이 랜덤성으로 작용해 기울기가 낮은 구간이나 local minima에서 쉽게 벗어날 수 있습니다.
+
+<br/>
+
+## #33
 
 ### 모멘텀의 수식을 적어 본다면?
 
 ![](https://images.velog.io/images/hanlyang0522/post/03b9292b-5ea4-494e-923b-69bcd0f6d7a0/image.png)
 
+모멘텀은 W를 업데이트 할 때 이전 단계의 업데이트 방향을 반영합니다.  
+이때 $\alpha$는 learning rate, $m$은 모멘트 계수를 뜻합니다.
+
 Keyword: 관성을 적용  
 Answer: W를 업데이트 할 때 이전 단계의 업데이트 방향을 반영  
 a는 learning rate, m은 모멘텀 계수
 
-- 간단한 MNIST 분류기를 MLP+CPU 버전으로 numpy로 만든다면 몇줄일까?
+<br/>
+
+## #34
+
+### 간단한 MNIST 분류기를 MLP+CPU 버전으로 numpy로 만든다면 몇줄일까?
+
+대략 40줄 정도 나올 것 같습니다.
+(코드 참고: [링크](https://techblog-history-younghunjo1.tistory.com/368))
+
   - 어느 정도 돌아가는 녀석을 작성하기까지 몇시간 정도 걸릴까?
-  - Back Propagation은 몇줄인가?
+  - Back Propagation은 몇줄인가? [링크](https://techblog-history-younghunjo1.tistory.com/382)
   - CNN으로 바꾼다면 얼마나 추가될까?
-https://github.com/hanlyang0522/InterviewStudy.githttps://github.com/hanlyang0522/InterviewStudy.git
+
+  
